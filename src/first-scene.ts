@@ -16,7 +16,6 @@ export class FirstGameScene extends Phaser.Scene {
     private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     private stars!: Phaser.Physics.Arcade.Group;
     private bombs!: Phaser.Physics.Arcade.Group;
-    //private scoreText!: Phaser.GameObjects.Text;
 
     constructor() {
         super('FirstGameScene');
@@ -30,7 +29,6 @@ export class FirstGameScene extends Phaser.Scene {
         this.load.image('star', 'assets/star.png');
         this.load.image('bomb', 'assets/bomb.png');
         this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
-        this.load.html('scoreText', 'score.html');
     }
 
     create() {
@@ -100,14 +98,8 @@ export class FirstGameScene extends Phaser.Scene {
         this.bombs = this.physics.add.group();
 
         //  The score
-        /*
-        this.scoreText = this.add.text(16, 16, 'score: 0');
-        this.scoreText.style.fontSize = '32px';
-        this.scoreText.style.setFill('#000');
-        */
-       //const scoreText = this.add.dom(200, 200).createFromCache('scoreDom');
-
-       this.add.dom(36, 16).createFromHTML('<div x-data="info"><h2>score: <span x-text="score.value"></span></h2></div>');
+        this.add.dom(36, 16).createFromHTML('<div x-data="info"><h2>score: <span x-text="score.value"></span></h2></div>');
+        
         //  Collide the player and the stars with the platforms
         this.physics.add.collider(this.player, this.platforms);
         this.physics.add.collider(this.stars, this.platforms);
@@ -155,7 +147,6 @@ export class FirstGameScene extends Phaser.Scene {
         star.disableBody(true, true);
         //  Add and update the score
         this.score.value += 10;
-        //this.scoreText.setText('Score: ' + this.score);
         if (this.stars.countActive(true) === 0) {
             //  A new batch of stars to collect
             this.stars.children.iterate((childGO: Phaser.GameObjects.GameObject) => {
