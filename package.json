@@ -1,0 +1,16 @@
+{
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "alpinejs": "^3.10.2",
+    "phaser": "3.55.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4",
+    "vite": "^2.9.8"
+  }
+}
