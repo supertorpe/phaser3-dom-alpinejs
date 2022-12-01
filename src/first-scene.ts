@@ -29,6 +29,7 @@ export class FirstGameScene extends Phaser.Scene {
         this.load.image('star', 'assets/star.png');
         this.load.image('bomb', 'assets/bomb.png');
         this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+        this.load.html('score', 'score.html');
     }
 
     create() {
@@ -98,7 +99,7 @@ export class FirstGameScene extends Phaser.Scene {
         this.bombs = this.physics.add.group();
 
         //  The score
-        this.add.dom(36, 16).createFromHTML('<div x-data="info"><h2>score: <span x-text="score.value"></span></h2></div>');
+        this.add.dom(36, 16).createFromCache('score');
         
         //  Collide the player and the stars with the platforms
         this.physics.add.collider(this.player, this.platforms);
